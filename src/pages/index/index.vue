@@ -30,6 +30,15 @@
 </script>
 
 <style>
+  .fix-area{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 750upx;
+    height: 168upx;
+    z-index: 55555;
+
+  }
 	.content {
 		text-align: center;
 		height: 400upx;

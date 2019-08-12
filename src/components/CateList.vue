@@ -12,14 +12,34 @@
       <view class="item">精选</view>
       <view class="item">精选</view>
       <view class="item">精选</view>
+      <view class="item">精选</view>
+      <view class="item">精选</view>
+      <view class="item">精选</view>
+      <view class="item">精选</view>
+      <view class="item">精选</view>
+      <view class="item">精选</view>
+      <view class="item">精选</view>
+      <view class="item">精选</view>
+      <view class="item">精选</view>
+      <view class="item">精选</view>
+      <view class="item">精选</view>
+      <view class="item">精选</view>
+      <view class="item">精选</view>
+      <view class="item">精选</view>
+      <view class="item">精选</view>
     </view>
-    <view class="more-cate">0</view>
+    <view class="icon-more-cate iconfont">&#xe603;</view>
   </view>
 </template>
 
 <script>
   export default {
-    name: "CateList"
+    name: "CateList",
+    data(){
+      return {
+        test: 'test'
+      }
+    }
   }
 </script>
 
@@ -30,22 +50,28 @@
   font-size: 28upx;
   display: flex;
   align-items: center;
-  .more-cate{
+  padding: 0 10upx;
+  box-sizing: border-box;
+  .icon-more-cate{
     text-align: center;
     flex: 1;
+    color: #ff1f1f;
+    font-size: 36upx;
+  }
+  .scroll-wrap{
+    width: 670upx;
+    box-sizing: border-box;
+    padding: 0 20upx 0 0;
   }
   .hide-scrollbar{
     width: 670upx;
-    box-sizing: border-box;
-    padding: 0 20upx;
     height: 60upx;
-    display: flex;
     overflow-x: auto;
-    &::-webkit-scrollbar{
-    height: 0;
-    width: 0;
-  }
+    display: flex;
     align-items: center;
+    &::-webkit-scrollbar, &::-webkit-scrollbar-thumb, &::-webkit-scrollbar-track, &::-webkit-scrollbar-track-piece{
+      height: 0 !important;
+    }
     .item{
       flex: 1 0;
       white-space: nowrap;
