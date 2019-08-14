@@ -8,8 +8,8 @@
           <text class="tag-icon iconfont" v-show="false"></text>
           嗨吃家整箱装6桶重庆正宗酸辣粉
         </view>
-      <view class="price-wrap" style="height: 40rpx"></view>
-      <view class="price-wrap">
+      <view class="item-wrap"></view>
+      <view class="item-wrap">
           <view>原价 ￥9.9</view>
           <view>月销 1231</view>
         </view>
@@ -67,9 +67,11 @@
           color: #ff4c2c;
         }
       }
-      .price-wrap{
+      .item-wrap{
         color: #999;
         font-size: 24rpx;
+        height: 32rpx;
+        line-height: 32rpx;
         display: flex;
         padding: 12rpx;
         justify-content: space-between;
@@ -85,7 +87,7 @@
           font-weight: bold;
         }
         .coupon{
-          background-image: url('/static/image/quan_bg.png');
+          background-image: url('http://ms1.sqkb.com/dist/image/before/quan_bg-1748afdb99.png');
           background-repeat: no-repeat;
           background-size: cover;
           background-position: center;

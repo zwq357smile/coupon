@@ -113,16 +113,17 @@
 
 	.uni-navbar__content .uni-navbar__content_view {
 		display: flex;
-		align-items: center
+		align-items: center;
+    padding: 0 10rpx;
 	}
 
 	.uni-navbar__header {
 		display: flex;
 		flex-direction: row;
 		width: 100%;
-		height: 44px;
-		line-height: 44px;
-		font-size: 16px
+		height: 88rpx;
+		line-height: 88rpx;
+		font-size: 36rpx
 	}
 
 	.uni-navbar__header-btns {

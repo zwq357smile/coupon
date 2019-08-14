@@ -5,14 +5,20 @@
       <CateList :list="list" shadow="true" @change="chanSecCate"></CateList>
     </view>
 
-    <scroll-view class="container" scroll-y="true" v-if="type === 0">
+    <scroll-view
+        class="container"
+        scroll-y="true"
+        v-show="type === 0"
+        @scrolltolower="nextPage"
+        :scroll-top="top"
+    >
       <swiper :duration="100" style="height: 240rpx">
         <swiper-item class="swiper-item">
           <image class="swiper-img" src="http://file.17gwx.com/sqkb/element/2018/10/09/856605bbc9abf58589.png"></image>
         </swiper-item>
       </swiper>
       <view class="new-fix-area">
-        <navigator class="new-fix-area-item">
+        <navigator class="new-fix-area-item" url="/pages/daily/index">
           <view class="text-area">
             <view class="title">9块9包邮</view>
             <view class="subTitle">每日白菜价</view>
@@ -33,7 +39,14 @@
       </view>
       <GoodsListCol v-for="item in 10"></GoodsListCol>
     </scroll-view>
-    <scroll-view class="container" scroll-y="true" v-else>
+
+    <scroll-view
+        class="container"
+        scroll-y="true"
+        v-show="type === 1"
+        @scrolltolower="nextPage"
+        :scroll-top="top"
+    >
       <swiper :duration="100" style="height: 240rpx">
         <swiper-item class="swiper-item">
           <image class="swiper-img" src="http://file.17gwx.com/sqkb/element/2018/10/09/856605bbc9abf58589.png"></image>
@@ -55,9 +68,10 @@
   import GoodsList from '@/components/custom/GoodsList'
   import GoodsListCol from '@/components/custom/GoodsListCol'
 	export default {
+    name: 'index',
 		data() {
 			return {
-        list: Array.from({length: 20}, (item, i) => ({name: '精选' + i, id: i})),
+        list: Array.from({length: 20}, (item, i) => ({name: '精选' + i, id: i.toString()})),
         listCate: [
           {
             name: '推荐',
@@ -73,7 +87,8 @@
         goodsList: [
 
         ],
-        type: 0
+        type: 0,
+        top: 0
 			}
 		},
 		onLoad() {
@@ -82,10 +97,17 @@
 		methods: {
       chanSecCate(val) {
         console.log(val);
+        this.top = 1;
         switch (val) {
           case '0': this.type = 0; break;
           default: this.type = 1;
         }
+        this.$nextTick(() => {
+          this.top = 0;
+        })
+      },
+      nextPage() {
+        console.log('nextPage');
       }
 		},
     components: {

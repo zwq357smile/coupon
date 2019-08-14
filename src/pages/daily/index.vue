@@ -1,25 +1,45 @@
 <template>
-  <view class="goods-list">
-    <view class="list-item" v-for="item in list">
-      <GoodsListGrid :src="item.thumbnail_pic" :name="item.title"></GoodsListGrid>
-      <view class="product-tmallnumber">
-        <text>原价￥{{item.origin_price}}</text>
-        <text>月销{{item.month_sales}}</text>
+  <view>
+    <UniNavBar
+        title="9快9包邮"
+        leftIcon="arrowleft"
+        class="nav-bar"
+        @click-left="goto('/pages/index/index')"
+    >
+
+    </UniNavBar>
+    <CateList :list="cateList" @change="changeCate"></CateList>
+    <scroll-view
+        scroll-y="true"
+        show-scrollbar="false"
+        :scroll-top="scrollTop"
+        class="scroll-view"
+    >
+      <view class="scroll-wrap">
+        <view v-for="item in list" class="list-item">
+          <GoodsListGrid :src="item.thumbnail_pic" :name="item.title" line="1"></GoodsListGrid>
+          <view class="price-explane">已售：152</view>
+          <view class="price-explane price-line">
+            <view class="through">原价￥199.00</view>
+            <view class="price">￥99.00</view>
+          </view>
+        </view>
       </view>
-      <view class="coupon_money">
-        <view>折后￥<text class="value">{{item.final_price}}</text></view>
-        <view class="coupon"><text class="quan_num">{{item.item_final_price_desc}}</text></view>
-      </view>
-    </view>
+    </scroll-view>
   </view>
 </template>
 
 <script>
-  import GoodsListGrid from './GoodsListGrid'
+  import UniNavBar from '@/components/uni-nav-bar/uni-nav-bar'
+  import CateList from '@/components/custom/CateList'
+  import GoodsListGrid from "@/components/custom/GoodsListGrid";
+
   export default {
-    name: "goodsList",
+    name: "index",
     data() {
       return {
+        cateList: Array.from({length: 20}, (item, i) => ({name: '精选' + i, id: i.toString()})),
+        scrollTop: 0,
         list: [
           {
             thumbnail_pic: "http://file.17gwx.com/sqkb/coupon/2019/5/27/_1558952556345883423_400x400",
@@ -67,62 +87,51 @@
         ]
       }
     },
-    onLoad: function() {
-      console.log('onLoad')
-    },
-    created: function() {
-      console.log('created')
-    },
-    onReady: function() {
-      console.log('onReady')
+    components: {
+      UniNavBar,
+      CateList,
+      GoodsListGrid
     },
     methods: {
-
-    },
-    components: {
-      GoodsListGrid
+      changeCate() {
+        this.scrollTop = 1;
+        this.$nextTick(() => {
+          this.scrollTop = 0;
+        })
+      },
+      goto(url) {
+        uni.redirectTo({url});
+      }
     }
   }
 </script>
 
 <style lang="scss">
-  .goods-list{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-bottom: 100rpx;
-    .list-item{
-      background-color: #fff;
-      margin-bottom: 10rpx;
-      border-radius: 4rpx;
-    }
-    .product-tmallnumber{
-      font-size: 20rpx;
-      color: #999;
+  .nav-bar{
+    color: #2b3134;
+  }
+  .scroll-view{
+    height: calc(100vh - 168rpx);
+    .scroll-wrap{
+      padding-bottom: 100rpx;
       display: flex;
-      justify-content: space-between;
-      line-height: 30rpx;
-      padding: 6rpx 12rpx;
-    }
-    .coupon_money{
-      display: flex;
-      justify-content: space-between;
-      font-size: 22rpx;
-      color: #ff4c2c;
-      padding: 12rpx 12rpx;
-      .value{
-        font-size: 28rpx;
-        font-weight: bold;
+      justify-content: space-around;
+      flex-flow: row wrap;
+      .list-item{
+        width: 360rpx;
+        background-color: #fff;
+        margin-bottom: 14rpx;
+        .price-line{
+          display: flex;
+          justify-content: space-between;
+          margin-top: 10rpx;
+          .price{
+            color: #fd2e32;
+            font-size: 35rpx;
+            font-weight: bolder;
+          }
+        }
       }
-    }
-    .coupon{
-      background-image: url('http://ms1.sqkb.com/dist/image/before/quan_bg-1748afdb99.png');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
-      color: #fff;
-      width: 128rpx;
-      line-height: 40rpx;
     }
   }
 </style>

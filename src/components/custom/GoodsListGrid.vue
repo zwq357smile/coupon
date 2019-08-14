@@ -1,7 +1,8 @@
 <template>
   <view class="grid-list">
-    <image class="cover" :src="src" lazy-load="true"></image>
-    <view class="title">
+<!--    <image class="cover" :src="src" lazy-load="true"></image>-->
+    <LazyImg :src="src" class="cover"></LazyImg>
+    <view class="title" :class="line === '1'? 'one-line' : 'two-line'">
       <text class="iconfont baoyou">&#xe680;</text>
       <text class="name">{{name}}</text>
     </view>
@@ -11,11 +12,13 @@
 
 <script>
   // import LazyLoad from './LazyLoad'
+  import LazyImg from './LazyImg'
   export default {
     name: "GoodsListGrid",
-    props:['src', 'name'],
+    props:['src', 'name', 'line'],
     components: {
       // LazyLoad
+      LazyImg
     }
   }
 </script>
@@ -40,8 +43,9 @@
       padding: 12rpx 12rpx;
       align-items: first;
       width: 360rpx;
-      height: 90rpx;
       box-sizing: border-box;
+    }
+    .title.two-line{
       text-overflow: -o-ellipsis-lastline;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -49,6 +53,13 @@
       -webkit-line-clamp: 2;
       line-clamp: 2;
       -webkit-box-orient: vertical;
+      height: 90rpx;
+    }
+    .title.one-line{
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      height: 56rpx;
     }
     .name{
       vertical-align: super;
