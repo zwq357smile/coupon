@@ -9,8 +9,7 @@
         @click-left="goto()"
     >
     </UniNavBar>
-<!--    #endif-->
-<!--    indicator-dots="true"-->
+    <!--#endif-->
     <swiper
         class="swiper"
         indicator-active-color="#ff4c2c"
@@ -1480,7 +1479,9 @@
       }
     },
     components: {
+      // #ifdef H5
       UniNavBar,
+      // #endif
       LazyImg,
       GoodsListGrid
     },
