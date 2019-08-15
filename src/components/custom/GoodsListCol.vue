@@ -1,29 +1,85 @@
 <template>
-  <view class="goods-list-col">
-    <view class="tag"></view>
-    <image class="pic" src="https://img.alicdn.com/i1/2273776315/O1CN01HWy7Mp1wWJhBxhUu8_!!2273776315.jpg_400x400"></image>
+  <view class="goods-list-col" @tap="goto">
+    <view
+        class="tag iconfont"
+        :class="ranking === 1? 'gold' : ranking === 2? 'sliver' : ranking === 3? 'copper': ''"
+        v-if="ranking && ranking<11"
+    >
+      &#xe684;
+      <view class="ranking">{{ranking}}</view>
+    </view>
+    <LazyImg class="pic" :src="pic"></LazyImg>
     <view class="info-area">
       <view class="title">
           <text class="tag-icon iconfont">&#xe600;</text>
           <text class="tag-icon iconfont" v-show="false"></text>
-          嗨吃家整箱装6桶重庆正宗酸辣粉
+          {{title}}
         </view>
       <view class="item-wrap"></view>
       <view class="item-wrap">
-          <view>原价 ￥9.9</view>
-          <view>月销 1231</view>
+          <view>原价 ￥{{originPrice}}</view>
+          <view>月售 {{monthSales | numberTrans}}</view>
         </view>
       <view class="coupon_money">
-          <view>折后<text class="value">￥9.9</text></view>
-          <view class="coupon"><text class="quan_num">券后9.9</text></view>
+          <view v-if="type === 'index'">折后<text class="value">￥{{cutPrice}}</text></view>
+          <view v-if="type === 'rank'">券后<text class="value">￥{{cutPrice}}</text></view>
+          <view class="coupon" v-if="type === 'index'">
+            <text class="quan_num">{{ticket}}</text>
+          </view>
+          <view class="coupon" v-if="type === 'rankBoard'">
+            <text class="quan_num">
+              {{ticket? `${ticket}元券` : `${discount}折` }}
+            </text>
+          </view>
         </view>
     </view>
   </view>
 </template>
 
 <script>
+  import LazyImg from './LazyImg'
   export default {
-    name: "GoodsListCol"
+    name: "GoodsListCol",
+    props: {
+      title: String,
+      pic: String,
+      type: {
+        type: String,
+        default: 'index'
+      },
+      // 原价
+      originPrice: String,
+      // 折后价
+      cutPrice: {
+        type: String,
+        default: '9.9'
+      },
+      // 折扣
+      discount: String,
+      // 券；金额
+      ticket: [Number, String],
+      //月销
+      monthSales: Number,
+      //名次
+      ranking: Number,
+      url: String
+    },
+    filters: {
+      numberTrans: function (val) {
+        return val >= 10000? (val / 10000).toFixed(1) + '万' : val;
+      }
+    },
+    components: {
+      LazyImg
+    },
+    methods: {
+      goto() {
+        if(!this.url) return;
+        uni.navigateTo({
+          url: this.url
+        })
+      }
+    }
   }
 </script>
 
@@ -38,10 +94,30 @@
     margin-bottom: 10rpx;
     .tag{
       position: absolute;
-      top: 0;
+      top: 2rpx;
       left: 0;
       width: 66rpx;
       height: 66rpx;
+      font-size: 60rpx;
+      text-align: center;
+      color: #1482d1;
+      .ranking{
+        position: absolute;
+        top: 8rpx;
+        width: 100%;
+        height: 100%;
+        font-size: 26rpx;
+        color: #fff;
+      }
+    }
+    .gold{
+      color: #ffd50e;
+    }
+    .sliver{
+      color: #b0cfe8;
+    }
+    .copper{
+      color: #ff9f84;
     }
     .pic{
       width: 250rpx;
@@ -95,6 +171,7 @@
           width: 180rpx;
           line-height: 52rpx;
           font-size: 24rpx;
+          text-align: center;
         }
       }
     }

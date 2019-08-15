@@ -7,7 +7,21 @@
     },
     {
       "path": "pages/daily/index",
-      "style": {}
+      "style": {
+        "navigationBarTitleText": "9.9包邮"
+      }
+    },
+    {
+      "path": "pages/rankBoard/index",
+      "style": {
+        "navigationBarTitleText": "排行榜"
+      }
+    },
+    {
+      "path": "pages/detail/index",
+      "style": {
+        "navigationBarTitleText": "商品详情"
+      }
     }
   ],
   "globalStyle": {
@@ -15,6 +29,11 @@
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8",
+    //#ifdef H5
     "navigationStyle": "custom"
+    //#endif
+    //#ifndef H5
+    "navigationStyle": "default"
+    //#endif
   }
 }

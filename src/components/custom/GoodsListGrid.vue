@@ -11,7 +11,6 @@
 </template>
 
 <script>
-  // import LazyLoad from './LazyLoad'
   import LazyImg from './LazyImg'
   export default {
     name: "GoodsListGrid",
@@ -27,6 +26,7 @@
   .grid-list{
     display: flex;
     flex-direction: column;
+    background-color: #fff;
     .cover{
       width: 360rpx;
       height: 360rpx;

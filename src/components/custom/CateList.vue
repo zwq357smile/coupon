@@ -41,7 +41,7 @@
     <view class="pop-wrap" v-if="pop">
       <view class="pop-title">全部分类</view>
       <view class="iconfont close" @tap="popToggle" id="aa">&#xe601;</view>
-      <view class="pop-content" @tap="fixToLeft">
+      <view class="pop-content" @tap="fixToLeft" :class="{'pop-content-ani': pop&&aniPop}">
         <view
             class="pop-item"
             v-for="item in list"
@@ -80,7 +80,8 @@
         selectVal: this.list[0].id,
         scrollLeft: 0,
         lastVal: this.list[0].id,
-        pop: false
+        pop: false,
+        aniPop: false
       }
     },
     mounted() {
@@ -89,7 +90,10 @@
     methods: {
       fixToLeft(e) {
         if(e.target.dataset.value) {
-          this.pop = false;
+          this.aniPop = false;
+          setTimeout(() => {
+            this.pop = false;
+          }, 0);
           this.selectVal = e.target.dataset.value;
           this.$nextTick(() => {
             // this.scrollLeft = e.target.offsetLeft - uni.upx2px(268);
@@ -114,7 +118,18 @@
         })
       },
       popToggle() {
-        this.pop = !this.pop;
+        if(this.pop) {
+          this.aniPop = false;
+          setTimeout(() => {
+            this.pop = false;
+          }, 100);
+        }
+        else{
+          setTimeout(() => {
+            this.aniPop = true
+          }, 0);
+          this.pop = true;
+        }
       }
     }
   }
@@ -188,6 +203,9 @@
       align-items: center;
       align-content: space-around;
       background-color: rgba(0, 0, 0, 0.74);
+      transform: translate3d(0 , -10%, 0);
+      opacity: 0;
+      transition: all .4s ease;
       color: #fff;
       .pop-item{
         width: 187.5rpx;
@@ -196,6 +214,10 @@
         text-align: center;
       }
     }
+    .pop-content-ani{
+      transform: translate3d(0 , 0, 0);
+      opacity: 1;
+    };
   }
   .shadow{
     box-shadow: 0 6rpx 6rpx rgba(0, 0, 0, 0.12);

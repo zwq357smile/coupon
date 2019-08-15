@@ -115,6 +115,7 @@
 		display: flex;
 		align-items: center;
     padding: 0 10rpx;
+    box-sizing: border-box;
 	}
 
 	.uni-navbar__header {
@@ -139,7 +140,7 @@
 	}
 
 	.uni-navbar__header-btns:last-child {
-		width: 60upx
+		/*width: 60upx*/
 	}
 
 	.uni-navbar__header-container {

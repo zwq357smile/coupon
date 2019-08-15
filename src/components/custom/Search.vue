@@ -4,7 +4,7 @@
         <view class="icon-search iconfont">&#xe68b;</view>
         <view class="search-tips">搜索优惠券</view>
       </a>
-      <view class="sex">
+      <view class="sex" @tap="change">
         <p class="text">女版</p>
         <p class="icon-arrow iconfont">&#xe6cc;</p>
       </view>
@@ -14,7 +14,12 @@
 <script>
 
   export default {
-    name: "IndexSearch"
+    name: "IndexSearch",
+    methods: {
+      change() {
+        this.$emit('change');
+      }
+    }
   }
 </script>
 
