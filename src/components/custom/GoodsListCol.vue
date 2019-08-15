@@ -22,7 +22,7 @@
         </view>
       <view class="coupon_money">
           <view v-if="type === 'index'">折后<text class="value">￥{{cutPrice}}</text></view>
-          <view v-if="type === 'rank'">券后<text class="value">￥{{cutPrice}}</text></view>
+          <view v-if="type === 'rankBoard'">券后<text class="value">￥{{cutPrice}}</text></view>
           <view class="coupon" v-if="type === 'index'">
             <text class="quan_num">{{ticket}}</text>
           </view>

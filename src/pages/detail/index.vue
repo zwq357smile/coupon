@@ -19,7 +19,11 @@
         interval="3000"
         duration="400"
     >
-      <swiper-item class="swiper-item" v-for="item, index in list.slice(0, 5)">
+      <swiper-item
+          class="swiper-item"
+          v-for="item, index in listTop"
+          :key="item.coupon_id"
+      >
         <image class="img" :src="item.thumbnail_pic"></image>
         <view class="content">
           <view>{{item.title}}</view>
@@ -1475,7 +1479,8 @@
             "stid": "28163613717075080",
             "mid": "03cer7CejvrRMJX4jFjjjjjj",
             "activity_type": 1
-          }]
+          }],
+        listTop: []
       }
     },
     components: {
@@ -1487,6 +1492,7 @@
     },
     onLoad(data) {
       ({pic: this.pic, page: this.page} = data);
+      this.listTop = this.list.slice(0, 5);
     },
     methods: {
       goto() {

@@ -53,4 +53,24 @@
   .through{
     text-decoration: line-through;
   }
+
+  @keyframes slideDown {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, -15%, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  } @keyframes slideUp {
+    0% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(0, -15%, 0);
+    }
+  }
 </style>

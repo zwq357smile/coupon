@@ -41,7 +41,7 @@
     <view class="pop-wrap" v-if="pop">
       <view class="pop-title">全部分类</view>
       <view class="iconfont close" @tap="popToggle" id="aa">&#xe601;</view>
-      <view class="pop-content" @tap="fixToLeft" :class="{'pop-content-ani': pop&&aniPop}">
+      <view class="pop-content" @tap="fixToLeft" :class="aniPop">
         <view
             class="pop-item"
             v-for="item in list"
@@ -81,7 +81,7 @@
         scrollLeft: 0,
         lastVal: this.list[0].id,
         pop: false,
-        aniPop: false
+        aniPop: ''
       }
     },
     mounted() {
@@ -90,10 +90,7 @@
     methods: {
       fixToLeft(e) {
         if(e.target.dataset.value) {
-          this.aniPop = false;
-          setTimeout(() => {
-            this.pop = false;
-          }, 0);
+          this.popToggle(false);
           this.selectVal = e.target.dataset.value;
           this.$nextTick(() => {
             // this.scrollLeft = e.target.offsetLeft - uni.upx2px(268);
@@ -117,18 +114,16 @@
           }).exec();
         })
       },
-      popToggle() {
-        if(this.pop) {
-          this.aniPop = false;
+      popToggle(flag) {
+        if(this.pop || !flag) {
+          this.aniPop = 'slide-up';
           setTimeout(() => {
             this.pop = false;
-          }, 100);
+          }, 300);
         }
         else{
-          setTimeout(() => {
-            this.aniPop = true
-          }, 0);
           this.pop = true;
+          this.aniPop = 'slide-down'
         }
       }
     }
@@ -137,6 +132,7 @@
 
 <style lang="scss">
   .cate-container{
+    position: relative;
     width: 750rpx;
     height: 80rpx;
     font-size: 28rpx;
@@ -178,7 +174,7 @@
   }
     .pop-wrap{
       position: absolute;
-      top: 96rpx;
+      top: 0;
       background-color: #fff;
       z-index: 99;
       line-height: 80rpx;
@@ -203,9 +199,6 @@
       align-items: center;
       align-content: space-around;
       background-color: rgba(0, 0, 0, 0.74);
-      transform: translate3d(0 , -10%, 0);
-      opacity: 0;
-      transition: all .4s ease;
       color: #fff;
       .pop-item{
         width: 187.5rpx;
@@ -214,12 +207,14 @@
         text-align: center;
       }
     }
-    .pop-content-ani{
-      transform: translate3d(0 , 0, 0);
-      opacity: 1;
-    };
   }
   .shadow{
     box-shadow: 0 6rpx 6rpx rgba(0, 0, 0, 0.12);
   }
+  .slide-down{
+    animation: slideDown .3s ease-out ;
+  };
+  .slide-up{
+    animation: slideUp .3s ease-out;
+  };
 </style>
