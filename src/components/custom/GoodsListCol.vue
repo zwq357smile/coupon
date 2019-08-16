@@ -15,7 +15,7 @@
           <text class="tag-icon iconfont" v-show="false"></text>
           {{title}}
         </view>
-      <view class="item-wrap"></view>
+      <view class="item-wrap explain"></view>
       <view class="item-wrap">
           <view>原价 ￥{{originPrice}}</view>
           <view>月售 {{monthSales | numberTrans}}</view>
@@ -149,8 +149,12 @@
         height: 32rpx;
         line-height: 32rpx;
         display: flex;
-        padding: 12rpx;
+        padding: 0 12rpx;
         justify-content: space-between;
+      }
+      .explain{
+        height: 72rpx;
+        color: #fd836a;
       }
       .coupon_money{
         display: flex;
