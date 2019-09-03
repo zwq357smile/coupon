@@ -8,12 +8,6 @@
 </template>
 
 <script>
-  // #ifdef H5
-    import Vue from 'vue'
-    import VueLazyload from 'vue-lazyload'
-    Vue.use(VueLazyload);
-  // #endif
-
   export default {
     name: "lazy-img",
     props: ['src']

@@ -22,6 +22,24 @@
       "style": {
         "navigationBarTitleText": "商品详情"
       }
+    },
+    {
+      "path": "pages/agreement/index",
+      "style": {
+        "navigationBarTitleText": "用户协议"
+      }
+    },
+    {
+      "path": "pages/help/index",
+      "style": {
+        "navigationBarTitleText": "帮助中心"
+      }
+    },
+    {
+      "path": "pages/help/detail",
+      "style": {
+        "navigationBarTitleText": "Q&A"
+      }
     }
   ],
   "globalStyle": {
