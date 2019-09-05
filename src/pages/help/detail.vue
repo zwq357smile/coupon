@@ -101,7 +101,7 @@
     z-index: 99;
     background-color: #fff;
     font-size: 32rpx;
-    color: #717171;
+    color: #525252;
     .stage{
       margin-bottom: 30rpx;
       .content-image{

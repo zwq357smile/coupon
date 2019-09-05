@@ -3,7 +3,7 @@
     <view class="help-item">
       <view class="item-left">
       <view class="introduction icon">&#xe61d;</view>
-      <view class="color-orange title">APP简介<view class="icon-right">&#xe6cc;</view></view>
+      <view class="color-orange title">APP简介</view>
     </view>
       <view class="item-right">
       <view class="block-item" @tap="showDetail('1')">好货优惠券介绍</view>
@@ -15,7 +15,7 @@
     <view class="help-item">
       <view class="item-left">
         <view class="teach icon">&#xe685;</view>
-        <view class="color-blue title">使用教程<view class="icon-right">&#xe6cc;</view></view>
+        <view class="color-blue title">使用教程</view>
       </view>
       <view class="item-right">
         <view class="block-item">如何领券购买</view>
@@ -27,7 +27,7 @@
     <view class="help-item">
       <view class="item-left">
         <view class="spread icon">&#xe720;</view>
-        <view class="color-deep title">推广教程<view class="icon-right">&#xe6cc;</view></view>
+        <view class="color-deep title">推广教程</view>
       </view>
       <view class="item-right">
         <view class="block-item">如何推广赚钱</view>
@@ -39,7 +39,7 @@
     <view class="help-item">
       <view class="item-left">
         <view class="cashier icon">&#xe6e2;</view>
-        <view class="color-purple title">提现问题 <view class="icon-right">&#xe6cc;</view></view>
+        <view class="color-purple title">提现问题<!--<view class="icon-right">&#xe6cc;</view>--></view>
       </view>
       <view class="item-right">
         <view class="block-item">如何提现</view>
@@ -82,7 +82,7 @@
         width: 170rpx;
         flex-shrink: 0;
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
         flex-direction: column;
         align-items: center;
         border-right: 1rpx solid #eee;
@@ -126,7 +126,8 @@
           justify-content: center;
           flex-wrap: wrap;
           align-content: center;
-          font-size: 28rpx;
+          font-size: 24rpx;
+          margin-top: 18rpx;
           .icon-right{
             font-family: iconfont;
             margin-left: 10rpx;
@@ -143,7 +144,7 @@
           height: 100rpx;
           line-height: 100rpx;
           text-align: center;
-          font-size: 28rpx;
+          font-size: 24rpx;
           border-bottom: 1rpx solid #eee;
           border-right: 1rpx solid #eee;
           box-sizing: border-box;
